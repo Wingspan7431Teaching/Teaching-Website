@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+<style>
+    @font-face {
+        font-family: 'Squada';
+        src: url('../fonts/Squada_One/SquadaOne-Regular.ttf') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Raleway';
+        src: url('../fonts/Raleway/Raleway-VariableFont_wght.ttf') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    body{
+        padding:5%;
+        padding-top: 0%;
+        font-family: Raleway;
+        font-size: 2vw;
+    }
+    body h1{
+        text-align: center;
+        font-family: Squada;
+        font-size: 6vw;
+    }
+    ul a{
+        font-size: 1.5vw;
+    }
+    @media (prefers-color-scheme: dark){
+        body{
+            color: rgb(245, 238, 238);
+            background-color: #1E1E1E;
+        }
+        a{
+            color:lightblue;
+        }
+    }
+</style>
+</head>
+<body>
+    <h1>What's a Game Like? (For Programming)</h1>
+    <p>In an FRC game there’s two alliances, the red alliance and the blue alliance. Each alliance has three teams for a total of six robots on the field. </p>
+    <p>At the start of a game, there’s 15 seconds called autonomous. During this period, the robots must function without any human input or interruption. In autonomous, most scoring options will give you more points. This is where teams with super good programming get the chance to really test their skills.</p>
+    <p>After autonomous the game enters the 2 minute tele-operated period, or “teleop.” Teleop is when drivers control the robot. This is usually a bit easier to code because it’s simply converting user-inputs to outputs instead of using sensors for inputs. However, for efficiency in teleop, programmers must create code that will help the driver score. This might look like the robot automatically aligning itself to score, or having preset positions for a scoring-arm so the driver doesn’t have to painstakingly raise it to the right height.</p>
+    <p>Feel free to look up some past games to get a feel of what you’ll be working on!</p>
+</body>
+</html>

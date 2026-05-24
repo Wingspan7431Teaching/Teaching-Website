@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <style>
+         @font-face {
+            font-family: 'Squada';
+            src: url('fonts/Squada_One/SquadaOne-Regular.ttf') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            }
+        @font-face {
+            font-family: 'Raleway';
+            src: url('fonts/Raleway/Raleway-VariableFont_wght.ttf') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            }
+        @keyframes grow{
+            from{
+                font-size: 6vw;
+            }
+            to{
+                font-size: 7vw;
+            }
+        }
+        body, html {
+            overflow-x: hidden;
+            padding:0;
+            margin: 0;
+        }
+        body{
+            background-color: black;
+        }
+        #navBar{
+            font-family: Squada;
+            color: white;
+            font-size: 6vw;
+            text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            justify-content: center;
+            align-self: bottom;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            align-content: center;
+
+        }
+        .navPart:hover{
+            cursor: pointer;
+            animation: grow 0.5s ease-in;
+            font-size: 7vw;
+        }
+        .navPart{
+            margin:1vw;
+            height: 15vw;
+            width: 30vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: inherit;
+            /* background-color: #FFBC2C; */
+        }
+        #lessonsBy7431{
+            color:white;
+            display: flex;
+            justify-self: center;
+            font-size: 11vw;
+            font-family: Squada;
+            background-color: black;
+            margin: 0;
+            display: flex;
+            justify-items: center;
+        }
+        #titleText{
+            align-self: center;
+        }
+        #info{
+            z-index: 1;
+            position: relative;
+            height:90vh; 
+            margin-top: 5vh;
+            margin-bottom: 50vh;
+            background-color: #339050;
+            font-family: Raleway;
+            font-size: 5vh;
+            text-align: center;
+        }
+        #info h1{
+            font-family: Squada;
+            font-size: 15vh;
+        }
+        #info img{
+            height: 25vh;
+            width: 25vh;
+        }
+        .subtext{
+            font-size: 3vh;
+        }
+        #bg{
+            z-index: 0;
+            position: fixed;
+            inset: 0;
+            display: grid;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="bg">
+        <div id="lessonsBy7431">
+            <p id="titleText">LESSONS BY WINGSPAN</p>
+        </div>
+    </div>
+    <div style="height: 100vh;"></div>
+    <div id="mainPart">
+        <div id="info">
+            <h1>ABOUT</h1>
+            <p>This website acts as a centralized hub for various training materials used by FRC team WINGPSPAN 7431. Our lessons reflect the belief that one of the most important parts of FIRST is the skillset members gain. We hope that this website will allow you to spread your wings when it comes to knowledge!</p>
+            <p class="subtext">Any thoughts, comments, or concerns? Reach out at <a href="mailto:wingspan7431coach@gmail.com">wingspan7431coach@gmail.com</a>. If you'd like to view our team website go <a href="https://www.wingspan7431.com/home">here</a></p>
+            <img src="logo.png" alt="Wingspan Logo.">
+        </div>
+        <div id="navBar">
+            <a id="navA" class="navPart" href="mechanical.html">
+                <p>Mechanical</p>
+            </a>
+            <a id="navB" class="navPart" href="software.html">
+                <p>Software</p>
+            </a>
+            <a id="navC" class="navPart" href="operations.html">
+                <p>Operations</p>
+            </a>
+        </div>
+    </div>
+<script>
+    const bg1 = document.getElementById('lessonsBy7431');
+    const info = document.getElementById('mainPart');
+
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const vh = window.innerHeight;
+        const progress = scrollY / vh;
+
+        // background moves more slowly, using viewport-relative units
+        bg1.style.transform = `translateY(-${progress * 16}vh)`;
+        // blue foreground moves slightly faster, using viewport-relative units
+        info.style.transform = `translateY(-${progress * 4}vh)`;
+    });
+</script>
+</body>
+</html>
