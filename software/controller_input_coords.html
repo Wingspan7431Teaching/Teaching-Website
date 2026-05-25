@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Controller Input/ Coordinates</h1>
+    <p>On a controller, there’s the left joystick and the right joystick. You can use the following methods to get the XY axes from each of these joysticks:</p>
+    <ul>
+        <li><span class=code>Scratchbot.sb_getControllerLeftX()</span></li>
+        <li><span class=code>Scratchbot.sb_getControllerLeftY()</span></li>
+        <li><span class=code>Scratchbot.sb_getControllerRightX()</span></li>
+        <li><span class=code>Scratchbot.sb_getControllerRightY()</span></li>
+    </ul>
+    <figure>
+        <img src="images/cartesian_coord_grid.png" alt="An image of a cartesian coordinate plane in 3D" width="80%">
+    </figure>
+    <p>In school, you might see this 3D coordinate system. Here, positive X is East, positive Y is Up, and positive Z is South. This would be called EUS or East-Up-South which corresponds with XYZ.</p>
+    <figure>
+        <img src="images/robot_coord_sys.svg" width="80%">
+        <figcaption>
+            "Robot 3D" image by WPILib Contributors, used under CC BY 4.0. No changes made.
+        </figcaption>
+    </figure>
+    <p>In FRC, we use NWU for the main field/ robot and NED for controller joysticks.</p>
+    <p>An image in NWU is displayed with the front of the field labeled. Here, positive X is forward, positive Y is left, and positive Z is UP. Also note that counterclockwise is considered positive.</p>
+    <figure>
+        <img src="images/joystick-3d.svg" width="80%">
+        <figcaption>
+            "Joystick" image by WPILib Contributors, used under CC BY 4.0. No changes made.
+        </figcaption>
+    </figure>
+    <p>Unfortunately, controllers also use their own distinct coordinate system. They use NED which is pictured to the left. This one is particularly different because it’s about rotating around each axis, not moving along it.</p>
+    <p>Positive X would be moving the joystick to the right. Positive Y would be moving the joystick backwards. Positive Z would be twisting the joystick clockwise (which you can’t do on a controller).</p>
+    <p>Quite frankly, this is a difficult topic to get fluent in. While you’re getting the hang of it feel free to use this conversion chart for controller input:</p>
+    <table>
+        <tr>
+            <th>Robot Direction</th>
+            <th>Robot Axis</th>
+            <th>Controller Axis</th>
+        </tr>
+        <tr>
+            <td>Forward</td>
+            <td>Positive X</td>
+            <td>Negative Y</td>
+        </tr>
+        <tr>
+            <td>Backward</td>
+            <td>Negative X</td>
+            <td>Positive Y</td>
+        </tr>
+        <tr>
+            <td>Right</td>
+            <td>Negative Y</td>
+            <td>Negative X</td>
+        </tr>
+        <tr>
+            <td>Left</td>
+            <td>Positive Y</td>
+            <td>Positive X</td>
+        </tr>
+    </table>
+    <p>An Extra Note:</p>
+    <p>The robot only understands information relative to itself (“move forward” tells it to move in the direction it’s currently facing). This type of instruction/ information is robot relative. Field relative means that the information is relative to the field instead of the robot. Our joysticks are one example of this because forward is always the same no matter what direction the robot is facing.</p>
+    <p>When dealing with coordinates make sure you always know if the information is robot or field relative.</p>
+</body>
+</html>

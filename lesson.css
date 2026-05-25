@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Squada';
+    src: url('../fonts/Squada_One/SquadaOne-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway/Raleway-VariableFont_wght.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    padding:5%;
+    padding-top: 0%;
+    font-family: Raleway;
+    font-size: 2vw;
+}
+body h1{
+    text-align: center;
+    font-family: Squada;
+    font-size: 6vw;
+}
+ul a{
+    font-size: 1.5vw;
+}
+@media (prefers-color-scheme: dark){
+    body{
+        color: rgb(245, 238, 238);
+        background-color: #1E1E1E;
+    }
+    a{
+        color:lightblue;
+    }
+    img{
+        background-color: white;
+    }
+}
+.code{
+    font-family:'Courier New', Courier, monospace;
+}
+    table {
+    border-collapse: collapse; /* Merges double lines into single lines */
+    width: 100%;
+}
+th, td {
+    border: 1px solid white;   /* Adds lines to headers and data cells */
+    padding: 8px;              /* Adds space inside the cells */
+}

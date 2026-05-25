@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+<style>
+    @font-face {
+        font-family: 'Squada';
+        src: url('../fonts/Squada_One/SquadaOne-Regular.ttf') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Raleway';
+        src: url('../fonts/Raleway/Raleway-VariableFont_wght.ttf') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    body{
+        padding:5%;
+        padding-top: 0%;
+        font-family: Raleway;
+        font-size: 2vw;
+    }
+    body h1{
+        text-align: center;
+        font-family: Squada;
+        font-size: 6vw;
+    }
+    ul a{
+        font-size: 1.5vw;
+    }
+    @media (prefers-color-scheme: dark){
+        body{
+            color: rgb(245, 238, 238);
+            background-color: #1E1E1E;
+        }
+        a{
+            color:lightblue;
+        }
+    }
+    .code{
+        font-family:'Courier New', Courier, monospace;
+    }
+</style>
+</head>
+<body>
+    <h1>Exercise Four</h1>
+    <p>The scratchbot methods needed for this exercise are:</p>
+    <ul>
+        <li><span class="code">Scratchbot.sb_getControllerLeftX()</span></li>
+        <li><span class="code">Scratchbot.sb_getControllerLeftY()</span></li>
+        <li><span class="code">Scratchbot.sb_setRobotMovement(xVelocity, yVelocity)</span></li>
+    </ul>
+    <p>For <span class="code">Scratchbot.sb_setRobotMovement</span> to update its values every few miliseconds we’ll take advantage of lambdas and suppliers. Don’t worry about what these are yet, just know how to use them to call the function. </p>
+    <p>Fill in the ? with the correct axis. Keep in mind that the "...getController..."" method calls might be multiplied by a negative.</p>
+    <p><ul><span class="code">Scratchbot.sb_setRobotMovement( <br>
+    () -> {return Scratchbot.sb_getControllerLeft?()}, <br>
+    ()-> {return Scratchbot.sb_getControllerLeft?()} <br>
+    );
+    </span></ul></p>
+    <p>Figure out what axis to use for each parameter. When you’re done, write brief comments to explain the code.</p>
+    <details>
+        <summary>HINT</summary>
+        <p><ul><span class="code"> Scratchbot.sb_setRobotMovement( <br>
+        () -> {-Scratchbot.sb_getControllerLeft?()}, <br>
+        ()-> {-Scratchbot.sb_getControllerLeft?()} <br>
+        ); 
+</span></ul></p>
+    </details>
+</body>
+</html>
