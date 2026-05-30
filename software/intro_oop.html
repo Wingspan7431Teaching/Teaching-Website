@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>What's OOP?</h1>
+    <p>In the upcoming lessons, you'll learn more about Classes and Objects on W3Schools. This lesson aims to give you the relevant, robotics-specific, context</p>
+    <br>
+    <p>So far you’ve been coding using what’s called procedural programming. This means that you write steps (procedures) that go in order and use variables that each store a single piece of information. OOP stands for Object-Oriented Programming which basically means that the code is organized into objects that contain more data, and methods that manipulate that data.</p>
+    <p>OOP uses 2 main concepts:</p>
+    <ul>
+        <li>Classes: Templates that say what an object will be. It says what data this object will hold, what actions it will have, and how to make one</li>
+        <li>Objects: A specific instance of the class.</li>
+    </ul>
+    <p>Methods are the actions that can be used on the objects. Attributes are variables/data in the class.</p>
+    <p style="text-align: center;">==✧==</p>
+    <p>For example, if you have two controllers that both need to:</p>
+    <ul>
+        <li>Know the computer port it's plugged into</li>
+        <li>Get the position of the left joystick</li>
+        <li>Check if the X button is being pressed</li>
+    </ul>
+    <p>Then a <span class="code">Controller</span> class could be made that offers a template to make both of these controllers. </p>
+    <p>This makes it where there’s no copy and pasting code to handle each controller. The controller class might contain:</p>
+    <ul>
+        <li><span class="code">computerPort</span><ul><li>A variable that specifies what port of the computer this controller is in.</li></ul></li>
+        <li><span class="code">getLeftX()</span><ul><li>Method that defines how to get the left joystick’s x coordinate for a specific controller object</li></ul></li>
+        <li><span class="code">getLeftY()</span><ul><li>Method that defines how to get the left joystick’s y coordinate for a specific controller object</li></ul></li>
+        <li><i>Other Controller Methods</i></li>
+    </ul>
+    <p>If we have an object of this <span class="code">Controller</span> class—let's call it <span class="code">controllerA</span>—then it might have:</p>
+    <ul>
+        <li><span class="code">computerPort = 1</span><ul><li><span class="code">ControllerA</span>'s specific computer port value</li></ul></li>
+        <li><span class="code">getLeftX()</span><ul><li>Method that will return <span class="code">controllerA</span>'s left joystick's x coordinate.</li></ul></li>
+        <li><span class="code">getLeftY()</span><ul><li>Method that will return <span class="code">controllerA</span>'s left joystick's y coordinate.</li></ul></li>
+        <li><i>Other Instance Methods</i></li>
+    </ul>
+    <p style="text-align: center;">==✧==</p>
+    <p><i><b>Quick Definition, Instance:</b></i> Oftentimes in programming you’ll hear the term “instance” used to refer to an object of a class. For example, <span class="code">controllerA</span> is an instance of the <span class="code">Controller</span> class.</p>
+</body>
+</html>

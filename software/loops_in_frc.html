@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Loops in FRC</h1>
+    <p>A lot of the code written in FRC runs in cycles. This allows the code to respond to new input every cycle. Because of the short nature of these cycles, loops can easily go over the allotted time and cause errors.</p>
+    <p>You’ll learn more about this later, but for now just keep these things in mind:</p>
+    <ul>
+        <li>One cycle is 20ms by default.</li>
+        <li>If your code takes longer than 20ms, it can cause bugs or lag in the robot’s behavior.</li>
+        <li>While loops should be avoided because they can easily go over the 20ms limit and freeze the robot.</li>
+        <li>For loops are okay, but they should still be fast and finish within that cycle.</li>
+    </ul>
+</body>
+</html>
