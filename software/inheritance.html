@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Inheritance in FRC</h1>
+    <p>Inheritance is HEAVILY used in FRC programming. One example of this lies in the structure of the <i>Robot.java</i> file. This file holds a class, <span class="code">Robot</span>, that is a child of <span class="code">TimedRobot</span>. <span class="code">Robot.java</span> file. This file holds a class, <span class="code">Robot</span>, that is a child of <span class="code">TimedRobot</span>. <span class="code">TimedRobot</span> is a Class that offers a wide variety of methods that <span class="code">Robot</span> overrides. This class is <span class="code">protected</span> and is intended to be inherited from <span class="code">TimedRobot</span>.</p>
+    <p>The most common methods that are overridden in the <span class="code">Robot</span> class from <span class="code">TimedRobot</span> are:</p>
+    <ul>
+        <li><span class="code">robotInit()</span></li>
+        <li><span class="code">robotPeriodic()</span></li>
+        <li><span class="code">autonomousInit()</span></li>
+        <li><span class="code">autonomousPeriodic()</span></li>
+        <li><span class="code">autonomousExit()</span></li>
+        <li><span class="code">teleopInit()</span></li>
+        <li><span class="code">teleopPeriodic()</span></li>
+        <li><span class="code">teleopExit()</span></li>
+    </ul>
+    <p>The reason these need to be overridden is that it allows the library to call the methods at the right time for us. For example, <span class="code">teleopInit()</span> will be run at the start of the teleoperated period of the game regardless of what code we put in the body of the method. </p>
+    <ul>
+        <li><span class="code">robotInit()</span>
+            <ul><li>Runs when the robot first turns on</li></ul>
+        </li>
+        <li><span class="code">robotPeriodic()</span>
+            <ul><li>Runs once every cycle, regardless of what section of the game it is</li></ul>
+        </li>
+        <li><span class="code">autonomousInit()</span>
+            <ul><li>Runs at the start of the autonomous period</li></ul>
+        </li>
+        <li><span class="code">autonomousPeriodic()</span>
+            <ul><li>Runs once every cycle during the autonomous period</li></ul>
+        </li>
+        <li><span class="code">autonomousExit()</span>
+            <ul><li>Runs at the end of the autonomous period</li></ul>
+        </li>
+        <li><span class="code">teleopInit()</span>
+            <ul><li>Runs at the start of the teleoperated period</li></ul>
+        </li>
+        <li><span class="code">teleopPeriodic()</span>
+            <ul><li>Runs once every cycle during the teleoperated period</li></ul>
+        </li>
+        <li><span class="code">teleopExit()</span>
+            <ul><li>Runs at the end of the teleoperated period</li></ul>
+        </li>
+    </ul>
+    <p>If you don’t remember much about teleop and auto, try looking back <a href="what's_a_game_like.html">here</a>. The note on <a href="loops_in_frc.html">Loops in FRC</a> may also be useful.</p>
+</body>
+</html>

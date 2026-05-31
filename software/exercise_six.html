@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Exercise Six</h1>
+    <p>Now that you have a good idea of what OOP is and how it works, it’s time to use some WPILib classes! WPILib or WPI Robotics Library is a massive library of classes and methods that you can import and use in your code.  WPILib is what FRC teams use to code their robots! If you want to look at their website you can find it <a href="https://docs.wpilib.org/en/stable/">here</a>. After you complete these lessons, the WPILib docs and WPILib Java API docs will be very useful for more in depth information or complicated topics.</p>
+    <p>One class WPILib has is the <span class="code"> XboxController</span> class. This class is very similar to what was explained in the <a target="_blank" rel="noopener noreferrer" href="intro_oop.html">What's OOP?</a> lesson. It allows you to create a controller and get input from it super easily!</p>
+    <p>The goal of this exercise is to use this class to redo <a target="_blank" rel="noopener noreferrer" href="exercise_four.html">Exercise Four</a> using the <span class="code">XboxController</span> class methods instead of <span class="code">Scratchbot.sb_getControllerLeftX()</span> and <span class="code">Scratchbot.sb_getControllerLeftY()</span>. You may reuse the code you wrote in that exercise as a base.</p>
+    <p>Some additional information you might find useful is:</p>
+    <ul>
+        <li>Two methods for instances of the XboxController class are <span class="code">getLeftX()</span> and <span class="code">getLeftY()</span></li>
+        <li>You can import WPILib classes by doing the following:
+            <ol>
+                <li>Create an object of the class</li>
+                <li>Hover over the red-line that will appear</li>
+                <li>Use “Ctrl + .” to see the quick fix options</li>
+                <li>Import the class</li>
+            </ol>       
+        </li>
+        <li>WPILib classes all have documentation. This allows you to hover over a class or a method to view information about it. (You may want to use this to find information about the constructor)</li>
+        <li>Use either 0 or 1 for the port number. This can be configured in Driver Station</li>
+    </ul>
+</body>
+</html>
