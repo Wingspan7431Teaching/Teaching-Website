@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Lambdas and Suppliers</h1>
+    <p>Every once in a while in programming, you'll see <i>lambdas</i>. These are anonymous functions, or functions with no name. They look like this:</p>
+    <p><span class="code">() -> {}</span></p>
+    <p>Here, parameters go in the parenthesis and the function body in the curly braces, as with a normal function. Ex:</p>
+    <ul>
+        <p><span class="code">(x,y) -> {</span></p>
+        <p><span class="code">&ensp; System.out.println(x);</span></p>
+        <p><span class="code">&ensp; System.out.println(y);</span></p>
+        <p><span class="code">&ensp; return x+y;</span></p>
+        <p><span class="code">}</span></p>
+    </ul>
+    <p>Lambdas can be super useful because they can be passed as arguments into a method (kind of like passing a method to a method)! You actually used lambdas in Exercise Four when setting the robot’s movement!</p>
+    <ul>
+        <p class="code">double speed = 5;</p>
+        <p class="code">Scratchbot.sb_setRobotMovement(</p>
+        <p class="code">&ensp; () -> {return -Scratchbot.sb_getControllerLeftY()},</p>
+        <p class="code">&ensp; ()-> {return -Scratchbot.sb_getControllerLeftX()}</p>
+        <p class="code">&ensp; );</p>
+    </ul>
+    <p>But why does this matter? Well, let's see what would happen if we store the values of these methods in variables first and then pass those as arguments:</p>
+    <ul>
+        <p class="code">double speed = 5;</p>
+        <p class="code">double arg1 = -Scratchbot.sb_getControllerLeftY();</p>
+        <p class="code">double arg2 = -Scratchbot.sb_getControllerLeftX();</p>
+        <p class="code">Scratchbot.sb_setRobotMovement(arg1,arg2);</p>
+    </ul>
+    <p>If the value of arg1 and arg2 both turned out to be 0.5. then the method call would really be:</p>
+    <ul>
+        <p class="code">Scratchbot.sb_setRobotMovement(0.5,0.5);</p>
+    </ul>
+    <p>This is because the method is only called when we initialize the variable’s value, so the variable will be assigned to whatever the value was at that particular time. If the joystick moves after this singular call, it won’t update the value of the variable since we’re never re-evaluating the value. </p>
+    <p>However, if we input a lambda for each argument, that value will be updated EVERY time the method runs allowing the value to change over time. </p>
+    <p>In order to make a method that takes in a lambda expression as an argument you can use a supplier. This method would have looked something like:</p>
+    <ul>
+        <p class="code">public static void Scratchbot.sb_setRobotMovement(Supplier<Double> xVelocity, ){...}</p>
+    </ul>
+    <p>Suppliers can be of any type! Here, <span class="code">-Scratchbot.sb_getControllerLeftX()</span> returns a double so we put Double inside the <> to signal that no other datatype should be accepted. </p>
+    <p>NOTE: Suppliers only take in non-primitive data types. This means inputting doubles, floats, ints, and chars will throw an error. In order to avoid this use what’s called a <i>wrapper class</i>. These classes are (mostly) the same as their primitive counterparts but they can be used with Suppliers. The following are the equivalent wrapper classes for each primitive datatype:</p>
+    <p>double -> Double</p>
+    <p>int -> Integer</p>
+    <p>char -> Character</p>
+    <p>float -> Float</p>
+    <p>In order to get the value of a Supplier use <span class="code">.get()</span>:</p>
+    <ul class="code">
+        <p>Supplier<Int> exampleIntSupplier = () -> {return 5;};</p>
+        <p>int exampleInt = examplIntSupplier.get();</p>
+        <p>System.out. println(exampleInt); //would print 5</p>
+    </ul>
+    <br>
+    <p><b>(Optional) Mini Exercise:</b></p>
+    <p>Complete the following function header:</p>
+    <p><span class="code">public static void sb_setRobotMovement([Insert Datatype] xInput, [Insert Datatype] yInput)</span></p>
+</body>
+</html>
