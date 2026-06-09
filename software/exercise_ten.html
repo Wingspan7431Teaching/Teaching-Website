@@ -11,7 +11,7 @@
     <p>Task: Create a class called <span class="code">Path</span> that stores a list of points that the robot will travel between. Assume that the movement is being carried out by some other class; the role of this class is solely to keep track of which point in the path the robot is currently on.</p>
     <p>The Path Class should contain the following:</p>
     <ul>
-        <li>A variable of type <span class="code">ArrayList&ltpose2d&gt</span> called <span class="code">points</span></li>
+        <li>A variable of type <span class="code">ArrayList&ltPose2d&gt</span> called <span class="code">points</span></li>
         <li>A variable of type <span class="code">int</span> called <span class="code">currentPointIdx</span></li>
         <li>A constructor of the form <span class="code">Path(ArrayList&ltdouble[]&gt points)</span>
             <ul>
@@ -19,14 +19,14 @@
                 <li>Each constructor should initialize the values of the class variables</li>
             </ul>
         </li>
-        <li>An overloaded constructor of the form <span class="code">Path(ArrayList&ltpose2d&gt points)</span></li>
+        <li>An overloaded constructor of the form <span class="code">Path(ArrayList&ltPose2d&gt points)</span></li>
         <li>An empty constructor containing no parameters</li>
         <li>A method <span class="code">addPoint()</span> with the parameter <span class="code">double[] point</span>
             <ul><li>This should add a new point to the <span class="code">points</span> array list.</li></ul>
         </li>
-        <li>An overloaded method <span class="code">addPoint()</span> with the parameter <span class="code">pose2d point</span></li>
+        <li>An overloaded method <span class="code">addPoint()</span> with the parameter <span class="code">Pose2d point</span></li>
         <li>A method <span class="code">getCurPointIdx()</span> which returns the <span class="code">currentPointIdx</span></li>
-        <li>A method <span class="code">getCurPoint()</span> which returns the point the bot is currently traversing to. The return type should be <span class="code">pose2d</span></li>
+        <li>A method <span class="code">getCurPoint()</span> which returns the point the bot is currently traversing to. The return type should be <span class="code">Pose2d</span></li>
         <li>A method <span class="code">getPathLength()</span> which returns the number of points in the path</li>
         <li>A method <span class="code">atPoint()</span> which increments the <span class="code">currentPointIdx</span><ul>
             <li>Should only increment the current position in the path when the next index is less than the length of the list. <i>Use a ternary operator to implement this functionality.</i></li>

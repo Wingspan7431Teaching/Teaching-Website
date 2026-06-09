@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="../lesson.css">
 </head>
 <body>
-    <h1>pose2d Class</h1>
-    <p>One frequently used class in FRC is the <span class="code">pose2d</span> class. The class stores information about a position on the field. Specifically, the class stores the x position, y position, and the rotation for a given point which can be accessed through getter methods.</p>
-    <p>The rotation in the <span class="code">pose2d</span> class is stored using another class called <span class="code">Rotation2D</span>. The <span class="code">Rotation2D</span> class stores an angle. The class has methods such as <span class="code">getRadians()</span>, <span class="code">getDegrees()</span>, and <span class="code">getRotations()</span> which is incredibly useful when different classes use different units to measure angles. </p>
-    <p>An example is put below which creates a <span class="code">Rotation2D</span> and then uses it to create a <span class="code">pose2d</span>:</p>
+    <h1>Pose2d Class</h1>
+    <p>One frequently used class in FRC is the <span class="code">Pose2d</span> class. The class stores information about a position on the field. Specifically, the class stores the x position, y position, and the rotation for a given point which can be accessed through getter methods.</p>
+    <p>The rotation in the <span class="code">Pose2d</span> class is stored using another class called <span class="code">Rotation2D</span>. The <span class="code">Rotation2D</span> class stores an angle. The class has methods such as <span class="code">getRadians()</span>, <span class="code">getDegrees()</span>, and <span class="code">getRotations()</span> which is incredibly useful when different classes use different units to measure angles. </p>
+    <p>An example is put below which creates a <span class="code">Rotation2D</span> and then uses it to create a <span class="code">Pose2d</span>:</p>
     <ul class="code">
         <p>Rotation2D angle = Rotation2D.fromDegrees(180);</p>
-        <p>pose2d pose = new pose2d(1.2,2.5,angle);</p>
+        <p>Pose2d pose = new Pose2d(1.2,2.5,angle);</p>
     </ul>
-    <p>I’d highly recommend reading the details of the <a target="_blank" rel="noopener noreferrer" href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/pose2d.html">pose2d</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation2d.html">Rotation2D</a> classes on the API docs. It’s good for both becoming more familiar with the API docs—which are a dense but useful resource— and understanding just how many different functionalities each of these classes offer.</p>
+    <p>I’d highly recommend reading the details of the <a target="_blank" rel="noopener noreferrer" href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html">Pose2d</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation2d.html">Rotation2D</a> classes on the API docs. It’s good for both becoming more familiar with the API docs—which are a dense but useful resource— and understanding just how many different functionalities each of these classes offer.</p>
 </body>
 </html>

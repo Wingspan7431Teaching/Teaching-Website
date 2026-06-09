@@ -17,7 +17,7 @@
 
     <ul class="code">
         <p>XboxController controller = new XboxController(0);</p>
-        <p>MockMoveRobot moveInstance = new MockMoveRobot(pose2d goalPoses);</p>
+        <p>MockMoveRobot moveInstance = new MockMoveRobot(Pose2d goalPose);</p>
         <p>Trigger aButtonTrigger = new Trigger(() -&gt; {return</p>
         <p>&ensp;&ensp;controller.getAButtonPressed()});</p>
         <p>aButtonTrigger.onTrue(moveInstance);</p>
