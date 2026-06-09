@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Encoders</h1>
+
+    <p>So far you’ve learned how to move a motor relative to its max speed/power, but this doesn’t give us any information about how fast the motor is spinning, or how far it’s spun. This is what we use encoders for. Encoders are a type of sensor that tracks the rotation of a motor.</p>
+    
+    <div style="text-align: center;"> <img src="images/encoder_disk_image.png" width="30%"></div>
+   
+    <p>A rotary encoder has a disk with ticks on it that gets rotated as the motor moves. The number of ticks that are counted out of the total tells the encoder how much the motor has spun. For example, this encoder disk has 64 ticks, so if the encoder has counted 16 ticks it can tell you the motor has spun ¼ of a rotation, which is π/2 radians.</p>
+
+    <p>There are two main types of rotary encoders: absolute and relative.</p>
+    <ul>
+        <li>Absolute encoders return the position of the motor relative to a specific point. This means that even if the robot turns off and back on, the encoder will still know the angle of the motor.</li>
+        <li>Relative encoders return the position of the motor relative to where it started. If the robot turns off and back on, the encoder will reset its angle to 0.</li>
+    </ul>
+    <p>NOTE: relative encoders don’t wrap, so 360 degrees is 360 degrees, 480 is 480, etc. However, absolute encoders do, so 360 degrees rolls over back to 0 and 480 to 120.</p>
+
+    <p>Relative encoders are useful when you need something like distance traveled or velocity like in a drivetrain or shooter. Absolute encoders are useful when you need the current rotation of something like the location of a turret.</p>
+
+    <p>We can get an encoder object in code using one of these methods on the motor controller:</p>
+
+    <ol>
+        <li>
+            <p><span class="code">getEncoder()</span></p>
+            <p>This is the internal relative encoder that is built into most motors.</p>
+        </li>
+
+        <li>
+            <p><span class="code">getAbsoluteEncoder()</span></p>
+            <p>This is an absolute encoder that is built into the motor. This method will only work on some motors like those in SwerveModules that have absolute encoders built into them.</p>
+        </li>
+
+        <li>
+            <p><span class="code">getExternalEncoder()</span></p>
+            <p>This refers to an encoder that is wired up to the motor rather than built in. This may be either relative or absolute.</p>
+        </li>
+    </ol>
+
+    <p>If the encoder is relative it’ll be an instance of the <span class="code">RelativeEncoder</span> class. If it’s absolute it’ll be an instance of the <span class="code">AbsoluteEncoder</span> class.</p>
+
+    <ul class="code">
+        <p>SparkMax motor = new SparkMax();</p>
+        <p>RelativeEncoder encoder = motor.getEncoder();</p>
+    </ul>
+
+    <p>In order to get the reading from a motor you can use either <span class="code">getPosition()</span> or <span class="code">getVelocity()</span>. <span class="code">getPosition()</span> will return the position of the motor in rotations. <span class="code">getVelocity()</span> will return the velocity of the motor in rotations per minute.</p>
+
+    <ul class="code">
+        <p>double position = encoder.getPosition();</p>
+    </ul>
+
+    <p>However, you might recall that our team doesn’t use rotations, we use radians. We can edit the units that <span class="code">getPosition()</span> and <span class="code">getVelocity()</span> return with the config for our motor controller.</p>
+
+    <ul class="code">
+        <p>SparkMax motor = new SparkFlex();</p>
+        <p>SparkMaxConfig config = new SparkFlexConfig();</p>
+        <p></p>
+        <p>config</p>
+        <p>&ensp;.idleMode(IdleMode.kBrake)</p>
+        <p>&ensp;.smartCurrentLimit(60);</p>
+        <p>config.encoder</p>
+        <p>&ensp;.positionConversionFactor(2*Math.PI);</p>
+        <p></p>
+        <p>motor.configure(config, true, true);</p>
+        <p>RelativeEncoder encoder = motor.getEncoder();</p>
+    </ul>
+
+    <p>Since 1 rotation = 2π radians, multiplying by a conversion factor of 2π converts the encoder value from rotations to radians. We can also use <span class="code">.velocityConversionFactor()</span> to set the conversion factor for velocity:</p>
+
+    <ul class="code">
+        <p>config.encoder</p>
+        <p>&ensp;.positionConversionFactor(2*Math.PI)</p>
+        <p>&ensp;.velocityConversionFactor((2*Math.PI)/60);</p>
+    </ul>
+
+    <p>This will convert the velocity from rotations per minute to radians per second.</p>
+
+</body>
+</html>

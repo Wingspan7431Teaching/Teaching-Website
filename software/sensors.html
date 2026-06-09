@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Sensors</h1>
+
+    <p>Encoders aren’t the only sensor we use on a robot. There are many more such as limit switches, gyroscopes, and limelights. We’ll go over the basics of each in this lesson. Feel free to look further into them on your own though! Keep in mind that the gyroscope and limelight are typically only used by the position component.</p>
+
+    <p>To begin, let’s look at limit switches. Limit switches are switches with two values: on and off. We use a limit switch to detect if a piece of the robot has reached its physical limit. For example, let’s say we have an arm and we need to know when it reaches the lowest possible height so we can stop the motors. If we put a limit switch at the lowest point, the arm will get lower and lower and eventually lower down on to the switch. When that happens, it’ll turn the limit switch “on” and we can stop motors on the arm from trying to move it down any further. This is also useful for detecting if a game piece has gone through the intake because the piece can press the limit switch. They’re very useful multi-purpose switches.</p>
+
+    <p>The next big sensor is the gyroscope. Gyroscopes tell us the speed a robot is going on the different axes. A gyro can either be 1D or 3D, meaning it measures the speed of one axis or three different axes.</p>
+
+    <p>The limelight is a camera we use to read april tags. April tags are tags with a unique ID that tell us information about where the robot is on the field. By calculating the distance the april tag is from the robot, and then factoring in the april tag’s position we can figure out the exact position of the robot.</p>
+
+    <p><b>Drifting and Odometry</b></p>
+
+    <p>Odometry is the use of these sensors such as encoders and gyroscopes to estimate the robots position. Odometry can be incredibly accurate since the encoders deliver precise information about how much the wheels of the robot have turned and the speed from the gyroscope can be used to calculate the distance traveled.</p>
+
+    <p>However, as earlier mentioned the values obtained from odometry can drift over time. For example, let’s say the robot is going over a ramp and the wheels are in the air for a brief time. While the wheels are in the air, they’re spinning without moving the robot. This throws off the position estimate.</p>
+
+    <p>To counteract this, odometry information is occasionally updated with the position calculated with April Tags. This reduces drift and gives a more precise estimate of the robot’s location.</p>
+
+</body>
+</html>

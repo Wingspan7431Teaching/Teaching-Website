@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>PIDs</h1>
+
+    <h2>Introduction/Motivation</h2>
+
+    <p>In past lessons we’ve looked at setting a motor based on its max power, and then getting information about its velocity and position from encoders. This leaves a few things unanswered such as how do we set the motor to spin at a specific speed or rotate a specific distance? In order to answer these questions let’s start with a specific case: setting a motor to spin one full rotation, or 2 radians.</p>
+
+    <p>Most people’s first instinct for this would be to set the motor with a bunch of different values and then use the encoders to see if the motor rotates 2 radians (guess and check). This approach can be incredibly time consuming, and would break very quickly. This is because a variety of different factors change what the motor’s max speed is, and hence what inputs will result in what rotation. For example, battery power affects this and power levels decrease as a match progresses. This means max power at the beginning of the match is going to be more than max power at the end of the match.</p>
+
+    <p>Additionally, other factors like driving the bot and other bots bumping into the bot can also affect the position of our motor after it’s set. This means we need a way to change the position of the motor if it gets moved.</p>
+
+    <p>What do we do then? We need to set the motor based on the current situation, but we can’t account for every factor either… we need to write our code in such a way that it can guess at the right input value and adjust itself until it reaches the target value. Then, it needs to check its position and return to that position if it gets displaced.</p>
+
+    <p>One tool we have to help with this is the encoder. We can use encoders to get the current velocity of the motor. Then, we can check what the difference is between our target value and the encoder value. This difference is called the error. Our target value (2 radians in this case) is called our setpoint. The goal of our code will be to bring the error to 0, reaching the setpoint.</p>
+
+    <p>We’ll get our code to do this using a PID. A PID controller is the (non-physical) system that takes in the error from the encoders and gives us a value to set the motor to. Let’s build the PID controller from the ground up.</p>
+
+    <h2>P-Term</h2>
+
+    <p>In order to design this system to bring the error to 0, we can start by setting the motor based on the current error. To do this let’s define a value, K<sub>p</sub>, we’ll multiply this value by the error and input the product to the motor. This means that the farther from the setpoint we are, the faster the motor will move towards it. You can think of this being like a spring where the more you compress or stretch it, the harder it pushes.</p>
+
+    <p>Here’s a few examples for different K<sub>p</sub> values and amounts of error:</p>
+
+    <ul>
+        <li>K<sub>p</sub>: 0.1 | error: radians → input to the motors will be 0.1 ~0.314</li>
+        <li>K<sub>p</sub>: 0.1 | error: 2 radians → input to the motors will be 0.2</li>
+        <li>K<sub>p</sub>: 0.2 | error: radians → input to the motors will be 0.2 ~0.157</li>
+    </ul>
+
+    <p>From this you can see that a higher value for K<sub>p</sub> will result in a higher input, and higher error will also lead to an increased input. A good question to ask here is: what happens if K<sub>p</sub> is too low or high? Well, if K<sub>p</sub> is too low the motor may never move or it will take a very long time to reach the right position. If K<sub>p</sub> is too high, the motor will overshoot the right position by a lot. When the motor tries to correct for this, it might overshoot the setpoint going the other direction. This can cause a lot of oscillation around the setpoint. A good value for K<sub>p</sub> will reach the setpoint quickly without a lot of oscillation around the setpoint (note that some oscillation is okay).</p>
+
+    <p>We’ll call this term (K<sub>p</sub>*error) the P term.</p>
+
+    <h2>D-Term</h2>
+
+    <p>Now, we can reach the setpoint relatively fast, but there’s some oscillation around the setpoint. How can we reduce this oscillation? Another thing we can look at is how fast the error is changing. If the error is changing too fast, we reduce the input. Effectively, this reduces oscillation. This is incorporated into our PID controller as the D term.</p>
+
+    <p>The D term is based on the roc of the error at a point in time and added with the P term to get the input for the motor. Because the D term is based on how fast the error is changing, it usually pushes in the opposite direction of this P term, lowering the effect of the P term when the error is changing too fast. By adding this damper (or brake of sorts) when the system is moving too fast, the entire system becomes more stable. This also means it might take longer to reach the set point initially, but the system won’t oscillate around it as much. Additionally, it can allow us to use a higher K<sub>p</sub> while still maintaining stability; potentially making it even faster than before.</p>
+
+    <p>Note: When the roc is low, the D term will have practically no effect.</p>
+
+    <p>To control how much the D term is slowing down the system, we’ll use Kd. Kd will be multiplied by the roc at a given time. A higher Kd means the system will move very smoothly, but struggle to reach the setpoint quickly. A low Kd might cause the system to be unstable and oscillate too much. The Kd term should be lower than Kp because it’s dampening the effects of the Kp term, not trying to reverse them.</p>
+
+    <h2>I-Term</h2>
+
+    <p>For most systems in FRC the P and D term is all you need. Sometimes however, the system will consistently be slightly off of the setpoint. In these cases you can add a very small I-term. The I-term is based on the total error that has been accumulated. So if the error was 8 for the first second and 9 for the second and third the total error would be 26. The I-term helps to directly counteract the error but can lead to a lot of issues. For example, if the robot gets stuck the error will accumulate over that time without changing leading to more and more error. Once the bot gets unstuck the I-term will increase the output by a lot, causing heavy overshoot and potentially breaking the hardware.</p>
+
+    <p>This can cause a positive feedback loop where the robot overshoots by more each time, potentially being a severe hazard. However, there are situations where this might be useful, such as if you’re lifting an arm that consistently falls short and it requires a small additional push to counteract its weight that the P and D terms cannot overcome on their own.</p>
+
+    <h2>Summary</h2>
+
+    <ul>
+        <li>PID controllers help us control specific values on motors, other than power by reacting to the current error.</li>
+        <li>The P term is based on the current error.</li>
+        <li>The D term is based off the current roc of the error and adds stability, reducing oscillation.</li>
+        <li>Together, the P term directly counteracts the error and the D term reduces any oscillation that the P term has caused around the setpoint.</li>
+        <li>The I term is rarely used in FRC</li>
+        <li>If the system is not reaching the setpoint at all you can look into using the I term.</li>
+    </ul>
+
+    <p>PIDs are used for a lot more than just rotating motors to a certain angle. PIDs are used in practically every part of robotics. One example is lifting an arm to a specific height. This is similar to rotating a motor to a certain position in concept, but here PIDs also help reduce the effects of gravity and the bot bumping into objects, among other things. PIDs are adaptable to change which is why they’re so great.</p>
+
+</body>
+</html>

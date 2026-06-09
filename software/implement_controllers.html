@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Implementing Controllers in Code</h1>
+
+    <p>The motor controllers we usually use, SparkFlex and SparkMax, have built in PID controllers. We use these controllers to calculate our motor input instead of calculating it on the RIO. However, you can calculate it on the RIO with the PIDController class. You can access the PID in a SparkFlex/ SparkMax in a similar way to how you get encoders:</p>
+
+    <ul class="code">
+        <p>//make a sparkMax motor</p>
+        <p>SparkMax motorController = new SparkMax(0, MotorType.kBrushless);</p>
+        <p></p>
+        <p>//make a PID controller object, the same format is used for SparkFlex</p>
+        <p>SparkClosedLoopController PIDController =</p>
+        <p>&ensp;motorController.getClosedLoopController();</p>
+    </ul>
+
+    <p>In order to edit the properties of the controller, like the coefficient values (KP, Ki, and KD), you can alter it in the config for the motor controller before making the object:</p>
+
+    <ul class="code">
+        <p>//make the motor configuration</p>
+        <p>SparkMaxConfig config = new SparkMaxConfig();</p>
+        <p></p>
+        <p>//Access the closed loop controller’s settings</p>
+        <p>config.ClosedLoop</p>
+    </ul>
+
+    <p>The following list shows a few settings you’ll likely need to set:</p>
+
+    <p><span class="code">.pid(double Kp, double Ki, double Kd)</span><br>
+    Set the PID coefficients</p>
+
+    <p><span class="code">.feedbackSensor(FeedbackSensor sensor)</span><br>
+    This determines the sensor that will be used to get the error. The value for sensor may be:</p>
+
+    <ul>
+        <li><span class="code">FeedbackSensor.kAbsoluteEncoder</span>: The encoder from <span class="code">.getAbsoluteEncoder()</span></li>
+        <li><span class="code">FeedbackSensor.kPrimaryEncoder</span>: The encoder from <span class="code">.getEncoder()</span></li>
+        <li><span class="code">FeedbackSensor.kAlternateOrExternalEncoder</span>: The encoder from <span class="code">.getExternalEncoder()</span></li>
+        <li><span class="code">FeedbackSensor.kAnalogSensor</span></li>
+        <li><span class="code">FeedbackSensor.kNoSensor</span></li>
+    </ul>
+
+    <p><span class="code">.positionWrappingEnabled(boolean enabled)</span><br>
+    This “wraps” the value of the position between two values. For example, when we hit 2 radians of rotation on a motor we want the value to be considered 0 radians, so if we set wrapping to true we can make sure that the value wraps.</p>
+
+    <p><span class="code">.positionWrappingInputRange(double minInput, double maxInput)</span><br>
+    This defines the points at which the motor should wrap. For wrapping at 2 radians, minInput would be 0 and maxInput would be 2.</p>
+
+    <p><span class="code">.outputRange(double minOutput, double maxOutput)</span><br>
+    Sets the output range that the PID can send to the motor. The values for the parameters must follow: -1 ≤ minOutput ≤ 1 and -1 ≤ maxOutput ≤ 1</p>
+
+    <p><b>To configure feedforward control:</b></p>
+
+    <ul class="code">
+        <p>config.ClosedLoop.feedForward</p>
+        <p>&ensp;.kV(val);</p>
+    </ul>
+
+    <p><span class="code">kV(val)</span> sets the kV coefficient for the feedforward controller to val. Many other values can be set in this same manner including kG.</p>
+
+    <p><b>Final Example:</b></p>
+
+    <ul class="code">
+        <p>SparkMax motorController = new SparkMax(0, MotorType.kBrushless);</p>
+        <p>SparkMaxConfig config = new SparkMaxConfig();</p>
+        <p></p>
+        <p>config.ClosedLoop</p>
+        <p>&ensp;.feedbackSensor(FeedbackSensor.kAbsoluteEncoder)</p>
+        <p>&ensp;.positionWrappingEnabled(true)</p>
+        <p>&ensp;.positionWrappingInputRange(0, 2*Math.PI)</p>
+        <p>&ensp;.outputRange(-1, 1)</p>
+        <p>&ensp;.pid(0.1, 0, 0.01);</p>
+        <p>config.ClosedLoop.feedForward</p>
+        <p>&ensp;.kV(0.05);</p>
+        <p>motorController.configure(config, true, true);</p>
+        <p>SparkClosedLoopController PIDController = motorController.getClosedLoopController();</p>
+    </ul>
+
+</body>
+</html>

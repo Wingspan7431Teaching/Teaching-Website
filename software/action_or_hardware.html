@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Is This an Action or Hardware?</h1>
+
+    <p>Now, what code goes into the command and what code goes into the subsystem?</p>
+
+    <p>We’ve discussed that commands should handle input and the action while subsystems should handle setting the hardware. However the line between that can get blurry when you're coding. Different teams draw this line differently; for Wingspan, we say the following:</p>
+
+    <p>Commands should get input from the driver or sensors and convert it into a form that the subsystems can use without having to have different methods for every single command.</p>
+    <p>For example, say you’re making the subsystem and commands for the arm and you have the following commands:</p>
+
+    <ul>
+        <li>Raise the arm to a certain height when bot is in a specific region of the field</li>
+        <li>Raise to max height when the driver hits the back bumper button</li>   
+        <li>Raise the arm up and down based on the y-axis of a joystick</li>
+    </ul>
+
+    <p>These commands should all call the same method, <span class="code">setHeight(double height)</span>, in the subsystem.</p>
+
+    <p>An example of what <i><b>NOT</b></i> to do is making unique methods in the subsystem such as:</p>
+
+    <ul class="code">
+        <li>setHeightWithRegion(Pose2D robotPosition)</li>
+        <li>setHeightWithBumper(boolean isBumperPressed)</li>
+        <li>setHeightWithJoystick(double joystickValue)</li>
+    </ul>
+
+</body>
+</html>

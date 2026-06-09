@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Running Commands</h1>
+
+    <p>We’ve already seen how <span class="code">.setDefaultCommands()</span> can be used to set a default command for the subsystem to run when no other commands are being run like an “idle behavior.” In order to get a fully functioning robot, we also need to have other actions based on input. This is what we use triggers for.</p>
+
+    <p>Triggers are instances of the <span class="code">Trigger</span> class. A trigger runs based on the value of a boolean value— which could be something like a button or a sensor. For example, if we want to turn an LED on when the A button is pressed, the A button being pressed would be our trigger and turning the LED on would be the command.</p>
+
+    <p>You can make a trigger using the constructor for the <span class="code">Trigger</span> class. The constructor for this class takes one parameter: a <span class="code">Supplier&lt;Boolean&gt;</span> for whatever condition you want to be the trigger. Then, you can take that trigger and use the <span class="code">.onTrue()</span> method on it. The parameter to <span class="code">onTrue()</span> is the command you want to run. For the MockMoveRobot example the code would look something like this:</p>
+
+    <ul class="code">
+        <p>XboxController controller = new XboxController(0);</p>
+        <p>MockMoveRobot moveInstance = new MockMoveRobot(Pose2D goalPoses);</p>
+        <p>Trigger aButtonTrigger = new Trigger(() -&gt; {return</p>
+        <p>&ensp;&ensp;controller.getAButtonPressed()});</p>
+        <p>aButtonTrigger.onTrue(moveInstance);</p>
+    </ul>
+
+    <p>Notice how the <span class="code">MockMoveRobot</span> constructor doesn’t need the <span class="code">isPressedA</span> parameter anymore; the trigger handles running the command for you. There’s also a method for <span class="code">.onFalse()</span> if you’d like to run a command when a value is false rather than true.</p>
+
+    <p>Another way to do this is using the <span class="code">JoystickButton</span> class which is a subclass of <span class="code">Trigger</span>. This class works the same as <span class="code">Trigger</span>, but it’s made specifically for controller input and doesn’t use suppliers. The constructor is: <span class="code">JoystickButton(XboxController controller, int buttonValue)</span>, where <span class="code">buttonValue</span> is a button value in the form <span class="code">XboxController.Button.kY.value</span>. For example:</p>
+
+    <ul>
+        <li class="code">XboxController.Button.kLeftBumper.value</li>
+        <ul><li>The left bumper button’s value</li></ul>
+        <li class="code">XboxController.Button.kB.value</li>
+        <ul><li>The B button’s value</li></ul>
+    </ul>
+
+    <p>Let’s look at the same example from earlier but with <span class="code">JoystickButton</span> instead of <span class="code">Trigger</span>:</p>
+
+    <ul class="code">
+        <p>XboxController controller = new XboxController(0);</p>
+        <p>MockMoveRobot MockMoveRobot = new MockMoveRobot();</p>
+        <p>JoystickButton aButtonTrigger = new JoystickButton(controller,</p>
+        <p>&ensp;&ensp;XboxController.Button.kA.value);</p>
+        <p>aButtonTrigger.onTrue(MockMoveRobot);</p>
+    </ul>
+
+    <p>There’s other ways to schedule methods, but you can complete most tasks with just these ones.</p>
+
+    <p>Note: Something like a joystick input would typically be a default command because the value ranges from -1 to 1, rather than being a boolean value like whether a button is pressed.</p>
+
+</body>
+</html>

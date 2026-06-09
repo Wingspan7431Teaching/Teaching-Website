@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Command-Based Programming (Overview)</h1>
+
+    <p>Command-Based Programming is a system that defines how we organize our code, manage our robots actions, and perform more complex actions. It’s really useful... But what exactly is it?</p>
+
+    <p>Command-Based Programming is a way we split the code into sections. There are two main parts in Command-Based Programming: subsystems and commands. A subsystem is a <b>physical group of parts</b> that performs one functionality (think Drivetrain, Intake, Climber, Shooter, etc.). A command is some <b>action</b> that a subsystem performs (think driving, intaking, climbing, shooting, etc). Most subsystems have multiple different commands. One way to think of it is that <i>subsystems are the hardware and commands are behavior</i>.</p>
+
+    <p>In code, we apply command-based programming using classes. A subsystem class controls hardware, a command class tells the subsystem how to set the hardware. Each subsystem gets its own folder, within that folder is a file with the class for the subsystem, and a unique file & class for each command. An example file structure is below:</p>
+
+    <ul class="code">
+        <p>src</p>
+        <p>└── main</p>
+        <p>&ensp;&ensp;└── java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;└── frc</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;└── robot</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;├── Robot.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;├── Main.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;└── drivetrain</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;├── Drivetrain.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;├── DriveWithJoysticks.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;├── GoToPointCommand.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;└── DrivetrainConstants.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;└── arm</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;├── Arm.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;├── RaiseArm.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;├── GrabPiece.java</p>
+        <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;└── ArmConstants.java</p>
+    </ul>
+
+    <p>Example Explantation:</p>
+
+    <p>The Robot file at the top is similar to what you’ve been using. This contains all the methods from TimedRobot (robotInit, robotPeriodic, teleopPeriodic, etc.). The main file starts the robot by calling a method (which will be done for you). Then, you get into the Command-Based Programming files.</p>
+
+    <p>The first folder has the Drivetrain files. This includes the subsystem, two commands for the subsystem, and a constants file. The constants file holds values that don’t change such as the location of the wheels relative to the robot center, the robot’s max speed, and other such values.</p>
+
+    <p>The example arm folder follows a similar structure.</p>
+
+    <p>Inside a subsystem file is all the code that directly interacts with the hardware — like spinning motors, turning on LEDs, or performing other low-level actions. Command files, on the other hand, contain the logic that uses input from the user or sensors to call those subsystem methods and perform the necessary actions.</p>
+
+    <p>Another key component of Command-Based Programming is the <span class="code">CommandScheduler</span>. The <span class="code">CommandScheduler</span>is a class that handles queuing commands. When you schedule two commands for the same subsystem it either puts it in queue (the second command will run when the first is over) or overrides the first command. This is how we run commands in the Robot.java file.</p>
+
+    <p>The commands and subsystems will have methods that run periodically. The <span class="code">CommandScheduler</span> is also in charge of running those. Make sure <span class="code">CommandScheduler.getInstance().run()</span> is in the body of the robotPeriodic() method so the <span class="code">CommandScheduler</span> can run every cycle.</p>
+
+    <p>To summarize:</p>
+    <ul>
+        <li>The <span class="code">CommandScheduler</span> schedules commands, typically in the Robot.java file.</li>
+
+        <li>The command processes data that’s input and uses it to call methods from the subsystem.</li>
+
+        <li>The method(s) in the subsystem physically perform the action.</li>
+    </ul>
+</body>
+</html>

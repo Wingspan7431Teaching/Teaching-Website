@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Command Compositions</h1>
+
+    <p>A Command Composition is a type of command that is made up of other commands. For example, a score command that is made up of a go to point command, raise arm command, and release piece command. While command compositions are groups of commands, the composition is treated as just one command. There are six main types of command compositions:</p>
+
+    <ol>
+        <li>
+            <p><b>Repeating</b></p>
+            <p>Repeats a command over and over</p>
+            <p>Finishes only when interrupted</p>
+        </li>
+
+        <li>
+            <p><b>Repeating Sequence</b></p>
+            <p>Repeats a sequence of two or more commands over and over</p>
+            <p>Finishes when interrupted</p>
+        </li>
+
+        <li>
+            <p><b>Sequential Command Group</b></p>
+            <p>Each command runs one at a time, in order.</p>
+            <p>The command is finished when all of the commands are completed.</p>
+        </li>
+
+        <li>
+            <p><b>Parallel Command Group</b></p>
+            <p>All of the commands run at the same time.</p>
+            <p>The command is finished when all of the commands are completed</p>
+        </li>
+
+        <li>
+            <p><b>Parallel Race Group</b></p>
+            <p>All of the commands run at the same time.</p>
+            <p>The command is finished when one command finishes</p>
+        </li>
+
+        <li>
+            <p><b>Parallel Deadline Group</b></p>
+            <p>All of the commands run at the same time</p>
+            <p>The command is finished when one specific command finishes.</p>
+        </li>
+    </ol>
+
+    <p>We won’t go over how to make these types of command compositions in these lessons. Right now, it’s more important to understand this conceptually. However, if you’re interested in learning it feel free to read about it on the <a a target="_blank" rel="noopener noreferrer" href="https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html">WPILib Docs</a>.</p>
+
+    <p><i>If you’re a veteran member reading this lesson for review, reading the docs on this is highly recommended.</i></p>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Default Commands</h1>
+
+    <p>Once you have a subsystem and commands for it, you need a way to tell the <span class="code">CommandScheduler</span> to run a command. One of the simplest ways to run a command is by setting it as the default command for the subsystem.</p>
+
+    <p>Default commands are like an idle behavior; the command runs when no other commands are scheduled. When another command is scheduled, it interrupts the default command. After the new command is done running, the default command will resume. The following syntax is used to set a default command for a subsystem:</p>
+
+    <p class="code">ExampleSubsytem.setDefaultCommand(exampleCommandInstance);</p>
+
+</body>
+</html>

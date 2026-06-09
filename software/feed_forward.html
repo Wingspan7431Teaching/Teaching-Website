@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Feed-Forward Control</h1>
+
+    <p>PIDs are a type of feedback controller. This means that the controller sets the motor power based on the error (desired output - actual output). Another type of controller is feedforward controller. Feedforward controllers predict what the input for the controller needs to be ahead of time. The value used for a feedforward controller is often calculated using a mathematical model of the system that’s being set. Feedforward controllers set the voltage rather than the power (the value between -1 and 1) of a motor. This is more predictable than power which can change based on the remaining battery.</p>
+
+    <p>Say we want to set a motor to spin at a speed of 2 radians/second. We can make a model of this motor system and calculate what the voltage it should be set to using physics. This value will be set without needing to read the sensors or check the error. Let’s compare feedback controllers (PIDs in our case) and feedforward controllers:</p>
+
+    <p><b>Pros of Feedforward Controllers vs PIDs</b></p>
+
+    <ul>
+        <li>Feedforward controllers set the motor from the start, there’s no delay while the controller waits for error.</li>
+        <li>**<i>Feedforward controllers can be used in place of PIDs that would require an I term (like velocity control).</i></li>
+        <li>Feedforward control doesn’t rely on sensors which can produce noise (inaccurate changes in data) and mess up feedback controllers.</li>
+    </ul>
+
+    <p><b>Cons of Feedforward Controllers vs PIDs</b></p>
+
+    <ul>
+        <li>Feedforward control can’t react when something unexpected happens (like the robot running into something). This can move/change the position, or whatever is being set, and there’s no way of moving it back.</li>
+        <li>Feedforward controllers require a good model to be accurate. If the model isn’t accurate, feedforward control can be less accurate than PIDs.</li>
+        <li>Implementing feedforward control can be difficult due to the complexities that come with designing an accurate model.</li>
+    </ul>
+
+    <p><i>**Velocity control is a special case for feedback/feedforward controllers because the system requires constant power. Think about setting position with PIDs: the controller brings the motor to the setpoint and then there’s no more input needed to maintain it at the setpoint (unless another force moves the motor in which the PID will react to bring the motor back to the setpoint). With velocity, once the motor reaches the setpoint (the correct speed), it needs to maintain that speed. However, there’s no error so the controller will stop sending input to the motor. This means you’d have to make Ki non-zero, which is not ideal (this was discussed in the last lesson). Instead, we can use feedforward control which is more stable and can maintain a consistent output. This doesn’t apply to all situations in which velocity control is used. In some fast systems, PID control will still be able to control velocity.</i></p>
+
+    <p>There’s a third option when it comes to feedforward vs PID control too: both. Using a feedforward controller combined with a PID controller cancels out most of the cons associated with either while keeping the pros. Additionally, there are ways to work around making a model to find the right values for feedforward control.</p>
+
+</body>
+</html>

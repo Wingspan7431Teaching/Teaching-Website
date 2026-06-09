@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Motor Configuration</h1>
+
+    <p>There’s a lot of different properties that we might want to edit on the motor. For example, motors have different behaviors for when they’re not moving. One behavior is brake where the motor actively resists movement. Another is coast where the motor can move relatively easily when force is applied. This is one property we can set using motor configurations. A motor configuration is an object that contains a bunch of properties that we can then use to set for a motor at once.</p>
+
+    <p>Let’s make a configuration for that <span class="code">SparkFlex</span> motor from the last lesson. Since it’s a <span class="code">SparkFlex</span> motor we’ll use the <span class="code">SparkFlexConfig</span> constructor (if it were a <span class="code">SparkMax</span> motor you’d use <span class="code">SparkMaxConfig</span>). Create a <span class="code">SparkFlexConfig</span> like so:</p>
+
+    <ul class="code">
+        <p>SparkFlexConfig sparkFlexConfig = new SparkFlexConfig();</p>
+    </ul>
+
+    <p>Now, to edit this configuration we’ll use one of the many methods this class offers.</p>
+
+    <ul class="code">
+        <p>sparkFlexConfig.idleMode(IdleMode.kBrake);</p>
+    </ul>
+
+    <p>This will set the behavior of the motor when it’s in idle mode (not moving) to break.</p>
+
+    <p>Another property that should always be set on motors controllers is a current limit. This is the max rate at which current may be sent to a motor. If we don’t set a current limit, too much power can be sent to the motor, which breaks it. We can set the current limit with <span class="code">.smartCurrentLimit(int stallLimit)</span> like so:</p>
+
+    <ul class="code">
+        <p>sparkFlexConfig</p>
+        <p>&ensp;.idleMode(IdleMode.kBrake)</p>
+        <p>&ensp;.smartCurrentLimit(60); //set current limit to 60 amps</p>
+    </ul>
+
+    <p>Now that we have a configuration with the properties we want, how do we apply it to the motor controller? For this we’ll use the <span class="code">configure()</span> method on the motor controller.</p>
+
+    <p>The <span class="code">configure()</span> method has three main parameters: the config object, a boolean for whether the previous settings on the motor controllers should be reset, and a boolean for whether the config should persist in the motor controller’s memory or not.</p>
+    <ul>
+    <li><span class="code">boolean reset</span></li>
+
+    <ul><li>When a motor controller gets configured, its settings are saved on the controller. Some settings will already be on there that you’re not altering with code. If reset is false, whatever was on there before will stay. If reset is true, the motor controller will reset all of its settings to default before applying your configuration.</li></ul>
+
+    <li><span class="code">boolean persist</span></li>
+
+    <ul><li>When the robot turns on and off, the settings on your motor controller will go back to what was last saved to memory. If you set persist to true, it will save the settings to the motor controller’s memory. Otherwise, this configuration will be switched back to what was last on the memory after a power cycle. Saving the configuration to memory will allow the settings to persist through power cycles.</li></ul>
+    </ul>
+    <p>In most cases, reset will be set to true. It’s better in most cases to reset to default settings before applying your own so that you know exactly what settings are on your motor controller during debugging. persist will also be true in the final version of your code. However, during testing you should set persist to false to avoid wearing out the memory with too many saves.</p>
+
+    <ul class="code">
+        <p>SparkFlex motor = new SparkFlex();</p>
+        <p>SparkFlexConfig sparkFlexConfig = new SparkFlexConfig();</p>
+        <p></p>
+        <p>sparkFlexConfig</p>
+        <p>&ensp;.idleMode(IdleMode.kBrake)</p>
+        <p>&ensp;.smartCurrentLimit(60);</p>
+        <p>motor.configure(sparkFlexConfig, true, true);</p>
+    </ul>
+
+</body>
+</html>

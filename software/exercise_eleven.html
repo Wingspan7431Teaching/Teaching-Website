@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Exercise Eleven</h1>
+
+    <p>For this exercise you’ll be creating a command for Drivetrain. In order to keep the focus on Command-Based Programming, you’ll be using Scratchbot methods here rather than calling methods that are in the Drivetrain class.</p>
+
+    <p>Navigate to the Drivetrain folder.</p>
+
+    <p>Next, navigate to the MockMoveRobot file. It should have the template code from below:</p>
+
+    <ul class="code">
+        <p>public class MockMoveRobot extends Command {</p>
+        <p>&ensp;&ensp;Pose2D goalPose;</p>
+        <p>&ensp;&ensp;Supplier&lt;Boolean&gt; isPressedA;</p>
+        <p></p>
+        <p>&ensp;&ensp;public MockMoveRobot(Pose2D goalPose, Supplier&lt;Boolean&gt; isPressedA) {</p>
+        <p>&ensp;&ensp;&ensp;&ensp;// add Subsystem Requirements</p>
+        <p>&ensp;&ensp;}</p>
+        <p></p>
+        <p>&ensp;&ensp;@Override</p>
+        <p>&ensp;&ensp;public void initialize() {}</p>
+        <p>&ensp;&ensp;@Override</p>
+        <p>&ensp;&ensp;public void execute() {}</p>
+        <p>&ensp;&ensp;@Override</p>
+        <p>&ensp;&ensp;public void end(boolean interrupted) {}</p>
+        <p>&ensp;&ensp;@Override</p>
+        <p>&ensp;&ensp;public boolean isFinished() {</p>
+        <p>&ensp;&ensp;&ensp;&ensp;return false;</p>
+        <p>&ensp;&ensp;}</p>
+        <p>}</p>
+    </ul>
+
+    <p><b>Task:</b> Complete the MockMoveRobot command so that it moves the robot when the A button is hit.</p>
+
+    <p><b>Specifications:</b></p>
+
+    <ul>
+        <li>The constructor should initialize the class variables and add the subsystem requirements.</li>
+        <li>The parameter <span class="code">goalPose</span> is the position the robot should move to.</li>
+        <ul><li>Note: You can assume that the starting position is the origin.</li></ul>
+        <li><span class="code">isPressedA</span> is a boolean supplier that holds the current value of the A button.</li>
+        <li>The <span class="code">initialize()</span> or <span class="code">execute()</span> method (it’s up to you to determine which) should check the value of the <span class="code">isPressedA</span> and call the necessary Scratchbot method when it's pressed.</li>
+        <li>The <span class="code">end()</span> and <span class="code">isFinished()</span> methods do not need to be altered.</li>
+        <li>Within the <span class="code">teleopInit()</span> method of the <span class="code">RobotState.java</span> file, create an instance of <span class="code">MockMoveRobot</span>.</li>
+        <li>Set the <span class="code">MockMoveRobot</span> instance to be the default command for the Drivetrain subsystem.</li>
+        <li>Make sure <span class="code">CommandScheduler.getInstance().run()</span> is in the <span class="code">robotPeriodic()</span> method so that your code will run.</li>
+    </ul>
+
+    <p><b>Necessary Knowledge:</b></p>
+
+    <ul>
+        <li><span class="code">XboxController</span> Class. This Class was used in <a target="_blank" rel="noopener noreferrer" href="exercise_six.html">Exercise Six</a>. Here, you'll be using the method <span class="code">getAButtonPressed()</span>. If you're interested in other methods in the <span class="code">XboxController</span> class the documentation can be found <a target="_blank" rel="noopener noreferrer" href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/XboxController.html">here</a>.</li>
+        <li><a target="_blank" rel="noopener noreferrer" href="lamdas_suppliers.html">Suppliers</a>.</li>
+        <li><a target="_blank" rel="noopener noreferrer" href="pose2d.html"><span class="code">Pose2D</span> Class.</a></li>
+        <li>Command-Based Programming, Commands, and Default Commands.</li>
+    </ul>
+
+</body>
+</html>

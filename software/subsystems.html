@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Subsystems</h1>
+
+    <p>Subsystems are where the more low-level, hardware, tasks are handled. A subsystem represents a group of hardware (drivetrain, arm, etc.) on the robot. Because of this the subsystem handles tasks such as setting motors, controlling pneumatics, toggling LEDs, and setting other types of hardware. Commands will call methods from the subsystems in order to set the hardware based on their input. Below is a basic subsystem skeleton:</p>
+
+    <ul class="code">
+        <p>public class ExampleSubsystem extends SubsystemBase {</p>
+        <p>&ensp;&ensp;public ExampleSubsystem() {}</p>
+        <p>&ensp;&ensp;@Override</p>
+        <p>&ensp;&ensp;public void periodic() {}</p>
+        <p>}</p>
+    </ul>
+
+    <p>At the top you can see that the <span class="code">ExampleSubsystem</span> class extends <span class="code">SubsystemBase</span>, similar to commands extending <span class="code">CommandBase</span>. This gives us the <span class="code">periodic()</span> method to override which works the same as other periodic methods in WPILib (it runs periodically, every 20ms by default).</p>
+
+    <p>There’s also a constructor for the subsystem. This constructor almost never needs parameters because only one object should be created for each subsystem.</p>
+
+    <p>On top of these methods, there will also be methods like <span class="code">setWheelSpeed()</span>, <span class="code">setArmHeight()</span>, and other such methods that will interact with the hardware directly. These will be public methods, called by the commands. In the last lesson, the example command used a <span class="code">doSomething()</span> method from the subsystem class.</p>
+
+</body>
+</html>

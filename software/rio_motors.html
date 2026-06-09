@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>The RIO and Motors</h1>
+
+    <p>In order to understand the programming for a robot, we need to understand the physical robot. For us in programming, the most important part of the robot is the RoboRIO (AKA. the RIO). The RIO is the brain of the robot: it stores and executes all of the code we write. When you deploy your code to the robot, it gets saved to the RIO so that the robot can execute it without needing to be connected to your laptop. You can see a picture of the roboRIO <a href="https://docs.wpilib.org/en/stable/_images/roborio.png"> here</a>.</p>
+    <p>Also note that the RoboRIO is being replaced by the SystemCore for the 2027 season. However, it serves a similar purpose to the RIO. We'll know more by the start of the 2027 season.</p>
+
+    <p>On the RIO is a variety of ports that we connect to other pieces of hardware. Additionally, the CAN bus is wired up to the RIO. The CAN bus is a 2-wire system that carries signals from the RIO to the components in order to execute your code. Port numbers are usually from the RIO and CAN/ device IDs are from the CAN bus. The port numbers and IDs are important information that is usually stored on a team document.</p>
+
+    <p>One type of hardware that’s wired on the CAN bus is the motor controller. Motor controllers are used to, well, control the motors. When you code a motor, you’re usually coding the motor controller which will then interact with the motor.</p>
+
+    <p>The vast majority of subsystems use motors and motor controllers, so understanding how to code them is incredibly important. Moving a robot arm uses motors, the drivetrain uses motors, intake uses motors, and the list goes on.</p>
+
+    <p>There are two main types of motors: brushed and brushless. Your code will need this information from you when creating a motor object. In most cases it’s safe to assume that the motors on the competition bot are brushless, but always check to make sure.</p>
+
+    <p><b>Making Motors in Code</b></p>
+
+    <p>There are a variety of different brands of motor controllers, but they all tend to use similar constructors in code. For this lesson I’ll use the <span class="code">SparkFlex</span> motor controller as an example. The constructor for a <span class="code">SparkFlex</span> motor is as follows:</p>
+
+    <ul class="code">
+        <p>SparkFlex(int deviceID, MotorType type)</p>
+    </ul>
+
+    <p>Here, the <span class="code">deviceID</span> is the CAN id for the motor controller and the <span class="code">motorType</span> is whether the motor is brushed or brushless. Here’s an example of creating a <span class="code">SparkFlex</span> motor controller:</p>
+
+    <ul class="code">
+        <p>SparkFlex motorController = new SparkFlex(3, MotorType.kBrushless);</p>
+    </ul>
+
+    <p>This creates a motor controller with a CAN id of 3 that controls a brushless motor. If you want to set the speed of a motor on the motor controller you can use <span class="code">.set(double speed)</span>, where speed is a value from -1 to 1. 1 represents the motor at full power and -1 is the motor spinning backward at full power. EX:</p>
+
+    <ul class="code">
+        <p>SparkFlex motorController = new SparkFlex(3, MotorType.kBrushless);</p>
+        <p>motorController.set(0.5); /*This will set the motor to be spinning at 50% power*/</p>
+    </ul>
+
+    <p>One last thing to note is that not only are there different types of motors, but there’s also many different brands of motors (with REV and CTRE being the main ones). Different brands have their own libraries for controlling their hardware. Wingspan mostly uses REV products, so the code in these lessons will teach you how to use REVLib. If you’d like us to release lessons on CTRE hardware or another brand please email us at vierahawkrobotics@gmail.com so we know there’s interest!</p>
+
+    <p><b>Summary</b></p>
+
+    <ol>
+        <li>The RIO is where code is stored on the robot and executed from</li>
+        <li>The CAN bus is wired to the RIO</li>
+        <li>CAN ids tell the code which device is which on the robot</li>
+        <li>Motor controllers control the motors</li>
+        <li>You can set motors using <span class="code">.set()</span> with a parameter value of 1 for max power forward, or -1 for max power in reverse</li>
+    </ol>
+
+</body>
+</html>

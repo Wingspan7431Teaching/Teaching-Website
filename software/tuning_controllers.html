@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Tuning Controllers</h1>
+
+    <p>Now that you know about PID coefficients (K<sub>P</sub>, K<sub>i</sub>, and K<sub>D</sub>) along with feedforward control, you might be wondering how we find the values for each of these. For PID coefficients you find the values through “tuning.” The tuning process can vary depending on a lot of factors. It’s generally a game of raising and lowering values up and down based on how the system reacts, starting with P, then D, and (very very rarely) I at the end.</p>
+
+    <p>For feedforward control you also use tuning to get the correct voltage in a lot of cases. Making a model is typically ideal though. The WPILib interactive tuning tutorials will follow this lesson. These tutorials will explain how to tune the PIDs in various situations.</p>
+
+    <p><b>Notes:</b></p>
+
+    <ul>
+        <li>Ignore the bang-bang control sections in these tutorials.</li>
+        <li>Feel free to skip over the diagrams for the controllers.</li>
+        <li>K<span class="code">v</span> is what you’ll tune to control the voltage with a feedforward controller.</li>
+        <li>K<span class="code">g</span> is in some exercises to add a force that counteracts gravity to your feedforward controller.</li>
+    </ul>
+
+</body>
+</html>

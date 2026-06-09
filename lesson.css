@@ -27,7 +27,7 @@ ul a{
 @media (prefers-color-scheme: dark){
     body{
         color: rgb(245, 238, 238);
-        background-color: #1E1E1E;
+        background-color: #151515;
     }
     a{
         color:lightblue;

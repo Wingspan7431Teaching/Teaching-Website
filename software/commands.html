@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Commands</h1>
+
+    <p>Commands are actions that the robot is instructed to perform. Here, we’ll go over what a file/ class for a command looks like, starting with an example.</p>
+
+    <ul class="code">
+        <p>00 //Imports would be up here</p>
+        <p>01 public class ExampleActionCommand extends CommandBase {</p>
+        <p>02 &ensp;&ensp;int exampleInput;</p>
+        <p>03</p>
+        <p>04 &ensp;&ensp;public ExampleActionCommand(int exampleInput) {</p>
+        <p>05 &ensp;&ensp;&ensp;&ensp;//Robot.instance is the robot</p>
+        <p>06 &ensp;&ensp;&ensp;&ensp;//Robot.instance.exampleSubsystem is a subsystem object</p>
+        <p>07 &ensp;&ensp;&ensp;&ensp;addRequirements(Robot.instance.exampleSubsystem);</p>
+        <p>08 &ensp;&ensp;&ensp;&ensp;this.exampleInput = exampleInput;</p>
+        <p>09 &ensp;&ensp;}</p>
+        <p>10 &ensp;&ensp;@Override</p>
+        <p>11 &ensp;&ensp;public void initialize() {</p>
+        <p>12 &ensp;&ensp;&ensp;&ensp;Robot.instance.exampleSubsystem.doSomething(exampleInput)</p>
+        <p>13 &ensp;&ensp;}</p>
+        <p>14 &ensp;&ensp;@Override</p>
+        <p>15 &ensp;&ensp;public void execute() {}</p>
+        <p>16 &ensp;&ensp;@Override</p>
+        <p>17 &ensp;&ensp;public void end(boolean interrupted) {}</p>
+        <p>18 &ensp;&ensp;@Override</p>
+        <p>19 &ensp;&ensp;public boolean isFinished() {</p>
+        <p>20 &ensp;&ensp;&ensp;&ensp;return false;</p>
+        <p>21 &ensp;&ensp;}</p>
+        <p>22 }</p>
+    </ul>
+    <p>Starting at line 1, notice how the command extends the <span class="code">CommandBase</span> class. This is similar to how our <span class="code">Robot</span> class extends the <span class="code">TimedRobot</span> class which allows us to use methods such as <span class="code">teleopPeriodic()</span>, <span class="code">robotInit()</span>, and other methods. In this case we get to override <span class="code">initialize()</span>, <span class="code">execute()</span>, <span class="code">end()</span>, and <span class="code">isFinished()</span> – which we’ll get to in a second.</p>
+
+    <p>Next, on line 4, is the constructor. The constructor initializes (sets) the values for any class variables (line 8), and add subsystem requirements (line 7)</p>
+
+    <p>Adding subsystem requirements makes it so that the <span class="code">CommandScheduler</span> never schedules two commands at the same time. If you don’t add subsystem requirements, both commands may try to run at the same time which can cause a lot of problems with the subsystem receiving conflicting instructions.</p>
+
+    <p>After the constructor is all of the overridden commands from the <span class="code">CommandBase</span> class. First, there’s <span class="code">initialize()</span>. <span class="code">initialize()</span> runs once when the <span class="code">CommandScheduler</span> first runs the command.</p>
+
+    <p>Note: the constructor is run when the command is created (when the robot starts in most cases). The <span class="code">initialize()</span> method will run when the command actually starts. This means that the constructor should be used for doing any tasks that don’t require input from the driver or sensors. On the other hand, the <span class="code">initialize()</span> method should be used for anything that does require such input. For example, if our goal is to move the arm to a specific height, the initial height should be set in the <span class="code">initialize()</span> method because the arm height might change between when the command is created and when it’s run.</p>
+
+    <p>Moving on, <span class="code">execute()</span> is run periodically throughout the duration of the command. <span class="code">end(boolean interrupted)</span> is run once when the command finishes. This can be because it completed naturally (<span class="code">isFinished()</span> returned true) or was interrupted by another command. The interrupted variable will say whether the command ended because another command was scheduled for the same subsystem or because the end condition was met.</p>
+
+    <p>The end condition is specified in <span class="code">isFinished()</span> which returns true or false depending on if this end condition has been met. For example, the <span class="code">GoToPoint</span> command might return true if the robot is a certain distance away from the desired point.</p>
+
+    <p>In summary:</p>
+
+    <ol>
+        <li>The constructor is run once before the command is even scheduled</li>
+        <li>Specify which subsystem the command uses in the constructor to avoid scheduling conflicts</li>
+        <li><span class="code">initialize()</span> is run once at the start of the command</li>
+        <li><span class="code">execute()</span> is run periodically while the command is active</li>
+        <li><span class="code">end()</span> is run once when the command finishes</li>
+        <li><span class="code">isFinished()</span> specifies the condition that determines when the command should finish</li>
+    </ol>
+</body>
+</html>
