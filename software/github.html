@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons by Wingspan</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Guide to GitHub</h1>
+
+    <p>Other than coding, using GitHub effectively is probably the most important skill for being an FRC programmer. GitHub allows teams to collaborate on a single project and track past versions. This “lesson” aims to act as a quick reference for the different terms and concepts for GitHub’s various functionalities.</p>
+
+    <h2>Workflow Overview</h2>
+
+    <ol>
+        <li>Open your chosen branch</li>
+        <li>Fetch and pull code</li>
+        <li>Make your changes</li>
+        <li>Commit</li>
+        <li>Push</li>
+        <li>Repeat 3-5 if making a lot of changes/ working over multiple days</li>
+        <li>Create a pull request if necessary</li>
+        <li>Merge code</li>
+    </ol>
+
+    <h2>Repository (repo)</h2>
+
+    <p>A repository, or a repo, is like a single project. A repository can be public so that anyone can view it or private so that only added collaborators can see it. A local repository is located on your computer. A remote repository is on the cloud servers of GitHub.</p>
+
+    <h2>Commits</h2>
+
+    <p>When working on code, you make various changes to the files. These changes can then make up a commit. Commits are then pushed on to the branch. Pushing refers to sending code that’s stored locally to GitHub’s cloud.</p>
+
+    <h2>Branches</h2>
+
+    <p>Once you have a repository, you can create different branches within it. Each branch is a specific version of the repo. When you “branch off” of another branch, you’re copying all the commits that have been made on it. Then, you can make new commits without affecting the initial branch. There are many different ways to use this functionality, we’ll look at the most common practices here.</p>
+
+    <p>The main branch is where working code lives. The code on the main branch is the latest working version of the code.</p>
+
+    <p>A dev (or develop, or development) branch is often used to test new code before merging it back with the main branch. This is useful if multiple changes were made to the code since they can be pushed to dev to test if the changes work together before merging it.</p>
+
+    <p>Other branches are made to add in new features. For example, a team might have a branch for Arm, Drivetrain, Intake, Limelight, and Climber. You only want one person working on each branch and no two branches working on the same file so that you can avoid merge conflicts. So, if multiple people are working on Drivetrain the task might be broken down into two or more branches such as DrivetrainSubsytem and DrivetrainCommands.</p>
+
+    <h2>Merging &amp; Pull Requests</h2>
+
+    <p>Merging branch A into branch B means adding all the changes from branch A to branch B. Merging is often done through pull requests. Pull requests are a request to merge. After you make a pull request, someone with the permissions must approve of the request. This is great for code reviews.</p>
+
+    <p>Frequently, a branch will be created for a change and after the change is merged back into the original branch, the derivative branch will be deleted.</p>
+
+    <h2>Merge Conflicts</h2>
+
+    <p>Sometimes, when you merge or push code, you’ll end up with a merge conflict. A merge conflict typically occurs when the branches you’re merging have both edited the same lines in a file. This can be resolved by accepting the changes made by only one of the commits or by going through the side-by-side view and choosing which changes to keep from the different versions.</p>
+
+    <p>In many cases, merge conflicts aren’t harmful; they can be quickly resolved. However, in many other cases code is lost when resolving merge conflicts and bugs ensue following them. It’s best to use proper branch organization, push your code, and follow other such practices in order to avoid merge conflicts.</p>
+
+    <h2>README Files</h2>
+
+    <p>When making a repo, you have the option to add a README file. This acts as a description of the project containing relevant information for those who are viewing it.</p>
+
+    <h2>Git vs. GitHub</h2>
+
+    <p>One thing you’ll hear is about Git and GitHub. GitHub is the external cloud system that stores repositories and allows team members to collaborate with one another. Git is a local program that tracks changes for version control. Git runs in the command line, but GitHub Desktop can be used as an easy-to-understand interface.</p>
+
+    <h2>Command Line</h2>
+
+    <p>The command line is found in the terminal and allows you to run various commands. Some useful commands are git commands. While Github Desktop can be used to interact with git, sometimes using the command line is necessary for more advanced functionality. For most purposes, only GitHub Desktop will be needed. If you want to learn to interact with git via the command line, a list of commands can be found here.</p>
+
+    <h2>Cloning &amp; Fetching from Origin</h2>
+
+    <p>Cloning copies a repository from the cloud onto your local machine for editing. After cloning the repository, you “fetch” the origin. This downloads any new commits to your local files. Afterwards, you pull the code to update your working code.</p>
+
+    <h2>Forking</h2>
+
+    <p>Forking a repository creates a copy of it on the cloud. This is different from cloning which creates a copy locally. When you fork a repo, you are able to edit it without altering the original repository or any of its branches. If you’d like to add any updates from the creator of the original repository, you can hit the “sync fork” button on GitHub.</p>
+
+    <h2>PUSH YOUR CODE!!</h2>
+
+    <p>If you take anything away from your time spent on GitHub, it should be to push your code.</p>
+
+    <p>Code that isn’t pushed on to GitHub often ends up getting lost. Especially when multiple repositories are being worked on on one computer or multiple people are using the same computer. There have been many cases in which hours of work needed to be redone because the changes were never pushed.</p>
+
+    <p>Additionally, if someone else isn’t aware of the changes you made, they may alter the branch on their own which can quickly lead to merge conflicts.</p>
+
+</body>
+</html>

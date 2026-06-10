@@ -21,6 +21,9 @@ body h1{
     font-family: Squada;
     font-size: 100px;
 }
+body h2{
+    font-family: Squada;
+}
 ul a{
     font-size: 18px;
 }
