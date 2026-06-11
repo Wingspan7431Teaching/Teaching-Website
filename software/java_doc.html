@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaDoc</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>JavaDoc</h1>
+
+    <p>When working on a team (or really any big project), it’s important to write documentation for your code. JavaDoc is typically used to create Java API documentation. Let’s look at an example of a JavaDoc comment:</p>
+
+    <ul class="code">
+        <p>/**</p>
+        <p>* Computes the sum of two numbers</p>
+        <p>*</p>
+        <p>* @author John Programming</p>
+        <p>* @param a The first number to add</p>
+        <p>* @param b The second number to add</p>
+        <p>* @returns The sum of a and b</p>
+        <p>*/</p>
+        <p>public int sum(int a, int b){</p>
+        <p>&ensp; return a+b;</p>
+        <p>}</p>
+    </ul>
+
+    <p>Notice that a JavaDoc comment is created by using <span class="code">/** content */</span> while a normal multi-line comment is <span class="code">/* content */</span>.</p>
+
+    <p>The first part is a description of the method. Then, there are tags. The <span class="code">@author</span> tag specifies who wrote the method. The <span class="code">@param</span> tag specifies what a specific parameter is. <span class="code">@returns</span> specifies what the method returns.</p>
+
+    <p>Try adding JavaDoc comments to a method, then hover over the name of the method. Notice how the documentation is displayed.</p>
+
+    <p>There are other additional tags that you can find online as well. Note that there are no required tags. For example, a JavaDoc comment might look like:</p>
+
+    <ul class="code">
+        <p>/**</p>
+        <p>* Computes the sum of two numbers</p>
+        <p>*/</p>
+        <p>public int sum(int a, int b){</p>
+        <p>&ensp; return a+b;</p>
+        <p>}</p>
+    </ul>
+
+    <p>Just make sure you include enough information for anyone that isn’t familiar with your method to understand what it is and how to use it.</p>
+
+    <p>You can also write JavaDoc comments for variables. This can be useful to specify units or what a variable is used for.</p>
+
+    <ul class="code">
+        <p>/** The default drivespeed that is set for the drivetrain in meters/second*/</p>
+        <p>public static final double defaultDriveSpeed = 0.5;</p>
+    </ul>
+</body>
+</html>

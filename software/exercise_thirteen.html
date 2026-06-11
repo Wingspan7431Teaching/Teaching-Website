@@ -16,18 +16,20 @@
             <li>The motor should be configured in this file</li>     
             <li>The motor should have its speed set in this file</li>
         </ul></li>
+        <li>A constants file for the motor subsystem</li>
         <li>A command to spin the motor based on input from a joystick</li>
-        <li>This command should call a method from the subsystem to spin the motor.</li>
-        <li>The motor’s speed should depend on the joystick’s Y axis (a value of 1 would mean the joystick is being pulled towards the user and the motor should spin in reverse).</li>
         <li>Code in the <span class="code">Robot.java</span> file to create the controller, and make the command a default command</li>
     </ul>
 
     <p><b>Notes:</b></p>
 
-    <ol>
+    <ul>
+        
+        <li>The command should call a method from the subsystem to spin the motor.</li>
+        <li>The motor’s speed should depend on the joystick’s Y axis (a value of 1 would mean the joystick is being pulled towards the user and the motor should spin in reverse).</li>
         <li>Commands should not directly interact with the motor, they should call subsystem methods to interact with the motor.</li>
         <li>Feel free to reference code you've already made while working on this. Memorizing code or syntax is never required nor expected; although, it tends to happen naturally overtime.</li>
-    </ol>
+    </ul>
 
 </body>
 </html>

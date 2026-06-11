@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constants File</title>
+    <link rel="stylesheet" href="../lesson.css">
+</head>
+<body>
+    <h1>Constants File</h1>
+
+    <p>Earlier, in the lesson on Command-Based Programming, constants were mentioned. A constant is a variable that does not change while the program is running. Common constants include motor IDs, wheel sizes, chassis size, default speed, and many other such values.</p>
+
+    <p>Putting all the constants in a specific file(s) is important so that you don’t have to go through the code and track down the variable to change it. It also makes it easier to reuse code. If you have all the physical constants in one place, it’s easy to change the numbers and use the same code for a different robot.</p>
+
+    <p>Some teams have one constants file for their entire robot. Wingspan uses one constants file per subsystem. We’ve found that it’s easier to find and organize values this way. However, the most important thing is to follow one convention for the whole team.</p>
+
+    <p>Variables in the constants file should always be declared as <span class="code">public static final</span>. You can read about the final keyword <a target="_blank" rel="noopener noreferrer" href="https://www.w3schools.com/java/ref_keyword_final.asp">here</a>.</p>
+    <p>Feel free to open the <i>DrivetrainConstants</i> file in the code template for Scratchbot to view an exmaple of a constants file!</p>
+</body>
+</html>
