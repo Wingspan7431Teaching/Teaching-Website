@@ -86,19 +86,43 @@
             margin-bottom: 50vh;
             background-color: #339050;
             font-family: Raleway;
-            font-size: 5vh;
+            font-size: 3.25cqh;
             text-align: center;
         }
         #info h1{
             font-family: Squada;
-            font-size: 15vh;
+            font-size: 11.5cqh;
         }
         #info img{
-            height: 25vh;
-            width: 25vh;
+            height: 25cqh;
+            width: 25cqh;
+        }
+        @media (max-width: 992px){
+            #info h1{
+                font-size: 8.5cqh;
+            }
+            #info{
+                font-size: 3cqh;
+            }
+        }
+        @media (max-width: 480px){
+            #info h1{
+                font-size: 9cqh;
+            }
+            #info{
+                font-size: 2.5cqh;
+            }
+        }
+        @media only screen and (orientation: landscape){
+            #info h1{
+                font-size: 12cqh;
+            }
+            #info{
+                font-size: 4cqh;
+            }
         }
         .subtext{
-            font-size: 3vh;
+            font-size: 15%vh;
         }
         #bg{
             z-index: 0;
@@ -108,6 +132,7 @@
             height: 100vh;
         }
     </style>
+     <link rel="icon" type="image/x-icon" href="logo.png">
 </head>
 <body>
     <div id="bg">
